@@ -1,0 +1,7 @@
+.DS_Store
+.agent/
+.gemini/
+node_modules/
+dist/
+build/
+.env
