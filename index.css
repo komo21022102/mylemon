@@ -1462,7 +1462,15 @@ footer {
 
 
     section {
-        padding: 5rem 1.5rem;
+        padding: 5rem 1rem;
+    }
+
+    #contact {
+        padding: 4rem 1rem;
+    }
+
+    .footer-contact-links {
+        gap: 1.5rem;
     }
 
     #hero {
