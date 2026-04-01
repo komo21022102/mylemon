@@ -112,3 +112,20 @@ if (backToTop) {
   });
 }
 
+// Force scroll to top/hero on page load or refresh
+if (history.scrollRestoration) {
+  history.scrollRestoration = 'manual';
+}
+
+window.addEventListener('load', () => {
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      target.scrollIntoView();
+      return;
+    }
+  }
+  // Default to hero (top)
+  window.scrollTo(0, 0);
+});
+
