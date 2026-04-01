@@ -17,6 +17,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Offset for fixed nav */
 }
 
 body {
@@ -1474,7 +1475,8 @@ footer {
     }
 
     #hero {
-        padding: 0 1.5rem 3rem;
+        padding: 0 1.5rem;
+        height: 100svh; /* use small vh for mobile if possible */
     }
 
     #about {

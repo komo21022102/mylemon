@@ -117,6 +117,16 @@ if (history.scrollRestoration) {
   history.scrollRestoration = 'manual';
 }
 
+function scrollToTopForce() {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+
+// Execute immediately if possible
+scrollToTopForce();
+
+// Also on load
 window.addEventListener('load', () => {
   if (window.location.hash) {
     const target = document.querySelector(window.location.hash);
@@ -125,7 +135,16 @@ window.addEventListener('load', () => {
       return;
     }
   }
-  // Default to hero (top)
-  window.scrollTo(0, 0);
+
+  // A slight delay helps on mobile browsers
+  setTimeout(scrollToTopForce, 0);
+  setTimeout(scrollToTopForce, 100);
+});
+
+// For extra safety on mobile navigation
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) {
+    scrollToTopForce();
+  }
 });
 
