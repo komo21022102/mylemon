@@ -55,6 +55,19 @@ body {
     opacity: 0.4;
 }
 
+/* Nav scroll progress bar */
+.nav-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(to right, var(--warm), rgba(200, 169, 110, 0.4));
+    z-index: 200;
+    transition: width 0.1s linear;
+    pointer-events: none;
+}
+
 /* Navigation */
 nav {
     position: fixed;
@@ -967,12 +980,48 @@ section {
 }
 
 .work-thumb {
+    position: relative;
     width: 100%;
     aspect-ratio: 4/3;
     overflow: hidden;
     margin-bottom: 1.5rem;
     border-radius: 4px;
     background: #eee;
+}
+
+.work-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, transparent 30%, rgba(26, 26, 24, 0.45) 100%);
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.work-item:hover .work-thumb::after {
+    opacity: 1;
+}
+
+.work-thumb-view {
+    position: absolute;
+    bottom: 1.2rem;
+    right: 1.2rem;
+    z-index: 2;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: rgba(245, 240, 232, 0.9);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+
+.work-item:hover .work-thumb-view {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .work-thumb img {
@@ -988,15 +1037,17 @@ section {
 
 .work-badge {
     display: inline-block;
-    background: #e9e54d;
-    color: var(--ink);
-    font-size: 0.6rem;
-    font-weight: 700;
-    padding: 0.15rem 0.6rem;
+    background: rgba(200, 169, 110, 0.1);
+    color: var(--warm);
+    border: 1px solid rgba(200, 169, 110, 0.3);
+    font-size: 0.58rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    padding: 0.2rem 0.7rem;
     border-radius: 2px;
     margin-bottom: 0.8rem;
     width: fit-content;
-    letter-spacing: 0.05em;
 }
 
 .work-info h3 {
@@ -1005,6 +1056,11 @@ section {
     font-weight: 500;
     margin-bottom: 0.4rem;
     line-height: 1.5;
+    transition: color 0.3s ease;
+}
+
+.work-item:hover .work-info h3 {
+    color: var(--warm);
 }
 
 .work-client {
